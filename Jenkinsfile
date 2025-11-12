@@ -50,7 +50,7 @@ pipeline {
             steps {
                 echo '=== Triggering ETL Job on Databricks ==='
                 sh '''
-                databricks jobs run-now --job-id <YOUR_JOB_ID>
+                databricks jobs run-now --job-id 192238912774281
                 '''
             }
         }
