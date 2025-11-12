@@ -37,7 +37,7 @@ pipeline {
                 echo '=== Uploading Bookhive_ETL notebook to Databricks Workspace... ==='
                 sh '''
                 databricks workspace import \
-                    ./Bookhive_ETL.ipynb \
+                    ./bookhive.data.ipynb \
                     /Shared/Bookhive_ETL \
                     --format JUPYTER \
                     --language PYTHON \
