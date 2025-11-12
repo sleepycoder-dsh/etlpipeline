@@ -17,16 +17,17 @@ pipeline {
 
         stage('Configure Databricks CLI') {
     steps {
-        withCredentials([
-            string(credentialsId: 'databricks-host', variable: 'DB_HOST'),
-            string(credentialsId: 'databricks-token', variable: 'DB_TOKEN')
-        ]) {
-            sh '''
-                echo "[DEFAULT]" > /var/lib/jenkins/.databrickscfg
-                echo "host = ${DB_HOST}" >> /var/lib/jenkins/.databrickscfg
-                echo "token = ${DB_TOKEN}" >> /var/lib/jenkins/.databrickscfg
-            '''
-        }
+            withCredentials([
+        string(credentialsId: 'databricks-host', variable: 'DB_HOST'),
+        string(credentialsId: 'DATABRICKS', variable: 'DB_TOKEN')
+    ]) {
+        sh '''
+            echo "[DEFAULT]" > /var/lib/jenkins/.databrickscfg
+            echo "host = ${DB_HOST}" >> /var/lib/jenkins/.databrickscfg
+            echo "token = ${DB_TOKEN}" >> /var/lib/jenkins/.databrickscfg
+        '''
+    }
+
     }
 }
 
