@@ -39,6 +39,7 @@ pipeline {
                     ./Bookhive_ETL.ipynb \
                     /Shared/Bookhive_ETL \
                     --format JUPYTER \
+                    --language PYTHON \
                     --overwrite
                 '''
             }
