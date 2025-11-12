@@ -2,10 +2,9 @@ pipeline {
     agent any
 
     environment {
-        // Credentials created in Jenkins (Manage Jenkins → Credentials → Global)
-        DB_HOST  = credentials('DATABRICKS_HOST')
-        DB_TOKEN = credentials('DATABRICKS_TOKEN')
-    }
+    DB_TOKEN = credentials('DATABRICKS')
+}
+
 
     stages {
 
