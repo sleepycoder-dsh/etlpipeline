@@ -16,20 +16,20 @@ pipeline {
         }
 
         stage('Configure Databricks CLI') {
-            steps {
-                echo '=== Configuring Databricks CLI... ==='
-                sh '''
-                set -x
-                mkdir -p /var/lib/jenkins
+    steps {
+        withCredentials([
+            string(credentialsId: 'databricks-host', variable: 'DB_HOST'),
+            string(credentialsId: 'databricks-token', variable: 'DB_TOKEN')
+        ]) {
+            sh '''
                 echo "[DEFAULT]" > /var/lib/jenkins/.databrickscfg
                 echo "host = ${DB_HOST}" >> /var/lib/jenkins/.databrickscfg
                 echo "token = ${DB_TOKEN}" >> /var/lib/jenkins/.databrickscfg
-                chmod 600 /var/lib/jenkins/.databrickscfg
-                set +x
-                echo "Databricks CLI configuration complete."
-                '''
-            }
+            '''
         }
+    }
+}
+
 
         stage('Deploy Notebook to Databricks') {
             steps {
